@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { BaseButton } from '../../../components';
+import { BaseButton, BaseCard } from '../../../components';
 
 const QuizResult = ({
   deskId,
@@ -13,7 +13,7 @@ const QuizResult = ({
   const navigation = useNavigation();
 
   return (
-    <View style={styles.card}>
+    <BaseCard>
       <Text style={styles.title}>Quiz Result</Text>
 
       <View style={styles.resultWrapper}>
@@ -45,28 +45,11 @@ const QuizResult = ({
           Back to Desk
         </BaseButton>
       </View>
-    </View>
+    </BaseCard>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    position: 'relative',
-    marginVertical: 10,
-    backgroundColor: 'white',
-    height: 400,
-    width: 300,
-    borderRadius: 25,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.6,
-    shadowRadius: 2,
-    elevation: 1,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 20,
-  },
-
   title: {
     fontSize: 23,
     fontWeight: 'bold',

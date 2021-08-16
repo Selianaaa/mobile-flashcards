@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import { BaseButton } from '../../../components';
+import { BaseButton, BaseCard } from '../../../components';
 
 const QuizCard = ({
   card,
@@ -13,7 +13,7 @@ const QuizCard = ({
   const [answerShown, setAnswerShown] = useState(false);
 
   return (
-    <View style={styles.card}>
+    <BaseCard>
       <Text style={styles.subtitle}>
         {`Card: ${cardNumber}/${cardsAmount}`}
       </Text>
@@ -45,7 +45,7 @@ const QuizCard = ({
           Correct
         </BaseButton>
       </View>
-    </View>
+    </BaseCard>
   );
 };
 
@@ -54,22 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#1e7e1b',
   },
-  card: {
-    position: 'relative',
-    marginVertical: 10,
-    backgroundColor: 'white',
-    height: 400,
-    width: 300,
-    borderRadius: 25,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.6,
-    shadowRadius: 2,
-    elevation: 1,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 20,
-  },
+
   question: {
     marginTop: 20,
     fontSize: 22,

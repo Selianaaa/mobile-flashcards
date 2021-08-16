@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useNavigation } from '@react-navigation/native';
 
-import { PageTitle } from '../../components';
+import { PageTitle, BaseCard, BaseInput } from '../../components';
 import { appActions } from '../../store';
 
 const AddDeskPage = ({ addNewDesk }) => {
@@ -20,13 +14,10 @@ const AddDeskPage = ({ addNewDesk }) => {
   return (
     <View style={{ padding: 20 }}>
       <PageTitle>New Desk</PageTitle>
-      <View style={styles.card}>
+      <BaseCard style={styles.card}>
         <Text style={styles.text}>Title of your new Desk:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={setDeskName}
-          value={deskName}
-        />
+        <BaseInput value={deskName} changeHandler={setDeskName} />
+
         <TouchableOpacity
           disabled={!deskName.length}
           style={[
@@ -47,25 +38,17 @@ const AddDeskPage = ({ addNewDesk }) => {
             Create Desk
           </Text>
         </TouchableOpacity>
-      </View>
+      </BaseCard>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    position: 'relative',
-    marginVertical: 10,
-    backgroundColor: 'white',
+    marginVertical: 70,
     height: 255,
-    borderRadius: 25,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.6,
-    shadowRadius: 2,
-    elevation: 1,
-    display: 'flex',
-    alignItems: 'center',
+    width: 310,
+    alignSelf: 'center',
     paddingTop: 40,
   },
   text: {
@@ -78,7 +61,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 10,
     height: 45,
-    width: 300,
+    width: 270,
     borderBottomColor: '#0c460a',
     borderBottomWidth: 2,
   },
@@ -87,9 +70,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 50,
-    width: 300,
-    borderRadius: 25,
+    height: 55,
+    width: 270,
+    borderRadius: 5,
   },
   btnText: { fontWeight: 'bold', fontSize: 23 },
 });
