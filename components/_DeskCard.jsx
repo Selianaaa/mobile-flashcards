@@ -1,20 +1,19 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
-  Animated,
   TouchableWithoutFeedback,
   Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-const DeskCard = ({ desk, handleDeleteClick }) => {
+const DeskCard = ({ desk, id, handleDeleteClick }) => {
   const navigation = useNavigation();
 
-  const { id, title, questions } = desk;
+  const { title, questions } = desk;
 
   const deleteCard = () => {
     Alert.alert('Warning', `Do you really want to delete ${title} deck ?`, [

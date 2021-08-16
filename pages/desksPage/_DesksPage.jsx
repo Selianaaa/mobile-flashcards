@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { DeskCard, PageTitle } from '../../components';
+import { appActions } from '../../store';
 
-//  TODO: DELETE DESK
-const DesksPage = ({ desks }) => {
+const DesksPage = ({ desks, removeDesk }) => {
   return (
     <ScrollView style={{ padding: 15 }}>
       <PageTitle>All Decks</PageTitle>
@@ -13,7 +14,8 @@ const DesksPage = ({ desks }) => {
         <DeskCard
           key={key}
           desk={value}
-          handleDeleteClick={(id) => console.log('DELETE DESK', id)}
+          id={key}
+          handleDeleteClick={(id) => removeDesk(id)}
         />
       ))}
 
@@ -26,4 +28,8 @@ const mapStateToProps = ({ app }) => ({
   desks: app.desks,
 });
 
-export default connect(mapStateToProps)(DesksPage);
+const mapDispatchtoProps = (dispatch) => ({
+  ...bindActionCreators(appActions, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchtoProps)(DesksPage);

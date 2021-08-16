@@ -12,14 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { appActions } from '../../store';
 
-function generateUID() {
-  return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
-  );
-}
-
-const AddDeskPage = ({}) => {
+const AddDeskPage = ({ addNewDesk }) => {
   const navigation = useNavigation();
 
   const [textInputValue, setTextInputValue] = React.useState('');
@@ -59,16 +52,7 @@ const AddDeskPage = ({}) => {
             if (textInputValue !== '') {
               const txt = textInputValue;
               handleChangeText('');
-              let id = generateUID();
-              // props.dispatch({
-              //   type: 'ADD_DECK',
-              //   deck: {
-              //     id: id,
-              //     title: txt,
-              //     cards: [],
-              //   },
-              // });
-              navigation.navigate('Deck', { id: id });
+              addNewDesk(txt, navigation);
             }
           }}
         >
@@ -140,12 +124,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ app }) => ({
-  desks: app.desks,
-});
-
 const mapDispatchtoProps = (dispatch) => ({
   ...bindActionCreators(appActions, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchtoProps)(AddDeskPage);
+export default connect(null, mapDispatchtoProps)(AddDeskPage);

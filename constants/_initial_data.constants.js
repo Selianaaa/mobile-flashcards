@@ -1,6 +1,5 @@
 export const initialDesks = {
-  React: {
-    id: 'xj352vofupe1dqz9emx13r',
+  xj352vofupe1dqz9emx13r: {
     title: 'React',
     questions: [
       {
@@ -13,8 +12,7 @@ export const initialDesks = {
       },
     ],
   },
-  JavaScript: {
-    id: 'vthrdm985a262al8qx3do',
+  vthrdm985a262al8qx3do: {
     title: 'JavaScript',
     questions: [
       {
