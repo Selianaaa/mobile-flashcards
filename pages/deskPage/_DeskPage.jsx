@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
-import { PageTitle } from '../../components';
+import { PageTitle, BaseButton } from '../../components';
 
-//  TODO: ADD CARD, TAKE QUIZ
 const DeskPage = ({ route, desks }) => {
   const { deskId } = route.params;
   const { title, questions } = desks[deskId];
@@ -18,16 +17,19 @@ const DeskPage = ({ route, desks }) => {
       <Text style={styles.subtitle}>{`${questions.length} cards`}</Text>
 
       <View style={styles.options}>
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => navigation.navigate('Add Card', { deskId: deskId })}
+        <BaseButton
+          pressHandler={() =>
+            navigation.navigate('Add Card', { deskId: deskId })
+          }
         >
-          <Text style={styles.btnText}>Add Card</Text>
-        </TouchableOpacity>
+          Add Card
+        </BaseButton>
 
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnText}>Start Quiz</Text>
-        </TouchableOpacity>
+        <BaseButton
+          pressHandler={() => navigation.navigate('Quiz', { deskId: deskId })}
+        >
+          Start Quiz
+        </BaseButton>
       </View>
     </View>
   );
@@ -46,20 +48,6 @@ const styles = StyleSheet.create({
   options: {
     position: 'relative',
     marginTop: 100,
-  },
-  btn: {
-    marginTop: 30,
-    width: 300,
-    backgroundColor: '#0c460a',
-    borderRadius: 25,
-    height: 55,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btnText: {
-    color: 'white',
-    fontSize: 22,
-    fontWeight: 'bold',
   },
 });
 const mapStateToProps = ({ app }) => ({

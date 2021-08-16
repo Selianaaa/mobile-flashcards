@@ -28,11 +28,11 @@ const DeskCard = ({ desk, id, handleDeleteClick }) => {
       toValue: 1,
       duration: 50,
       useNativeDriver: true,
-    }).start(() => navigation.navigate('Deck', { deskId: id }));
+    }).start(() => navigation.navigate('Desk', { deskId: id }));
   };
 
   const deleteCard = () => {
-    Alert.alert('Warning', `Do you really want to delete ${title} deck ?`, [
+    Alert.alert('Warning', `Do you really want to delete ${title} Desk ?`, [
       { text: 'No' },
       {
         text: 'Yes',

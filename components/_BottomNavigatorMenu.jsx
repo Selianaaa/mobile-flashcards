@@ -13,7 +13,7 @@ const BottomNavigatorMenu = () => {
         tabBarIcon: ({ color, size }) => {
           const icons = {
             Desks: 'albums-outline',
-            'Add Deck': 'add-circle-outline',
+            'Add Desk': 'add-circle-outline',
           };
 
           return (
@@ -23,7 +23,7 @@ const BottomNavigatorMenu = () => {
       })}
     >
       <Tab.Screen name="Desks" component={DesksPage} />
-      <Tab.Screen name="Add Deck" component={AddDeskPage} />
+      <Tab.Screen name="Add Desk" component={AddDeskPage} />
     </Tab.Navigator>
   );
 };

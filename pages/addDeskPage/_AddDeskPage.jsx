@@ -19,9 +19,9 @@ const AddDeskPage = ({ addNewDesk }) => {
 
   return (
     <View style={{ padding: 20 }}>
-      <PageTitle>New Deck</PageTitle>
+      <PageTitle>New Desk</PageTitle>
       <View style={styles.card}>
-        <Text style={styles.text}>Title of your new deck:</Text>
+        <Text style={styles.text}>Title of your new Desk:</Text>
         <TextInput
           style={styles.input}
           onChangeText={setDeskName}
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginVertical: 10,
     backgroundColor: 'white',
-    height: 250,
+    height: 255,
     borderRadius: 25,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -87,9 +87,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 45,
+    height: 50,
     width: 300,
-    borderRadius: 5,
+    borderRadius: 25,
   },
   btnText: { fontWeight: 'bold', fontSize: 23 },
 });

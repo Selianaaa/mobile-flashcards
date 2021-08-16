@@ -46,7 +46,7 @@ const addNewDesk = (title, navigation) => {
       })
     );
 
-    navigation.navigate('Deck', { deskId: deskId });
+    navigation.navigate('Desk', { deskId: deskId });
   };
 };
 
@@ -86,7 +86,7 @@ const addNewCard = (deskId, card, navigation) => {
       })
     );
 
-    navigation.navigate('Deck', { deskId: deskId });
+    navigation.navigate('Desk', { deskId: deskId });
   };
 };
 
