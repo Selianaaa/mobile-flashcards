@@ -3,19 +3,19 @@ import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { DeskCard, PageTitle } from '../../components';
+import { DeckCard, PageTitle } from '../../components';
 import { appActions } from '../../store';
 
-const DesksPage = ({ desks, removeDesk }) => {
+const DecksPage = ({ decks, removeDeck }) => {
   return (
     <ScrollView style={{ padding: 15 }}>
-      <PageTitle>All Desks</PageTitle>
-      {Object.entries(desks).map(([key, value]) => (
-        <DeskCard
+      <PageTitle>All Decks</PageTitle>
+      {Object.entries(decks).map(([key, value]) => (
+        <DeckCard
           key={key}
-          desk={value}
+          deck={value}
           id={key}
-          handleDeleteClick={(id) => removeDesk(id)}
+          handleDeleteClick={(id) => removeDeck(id)}
         />
       ))}
 
@@ -25,11 +25,11 @@ const DesksPage = ({ desks, removeDesk }) => {
 };
 
 const mapStateToProps = ({ app }) => ({
-  desks: app.desks,
+  decks: app.decks,
 });
 
 const mapDispatchtoProps = (dispatch) => ({
   ...bindActionCreators(appActions, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchtoProps)(DesksPage);
+export default connect(mapStateToProps, mapDispatchtoProps)(DecksPage);

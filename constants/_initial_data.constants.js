@@ -1,4 +1,4 @@
-export const initialDesks = {
+export const initialDecks = {
   xj352vofupe1dqz9emx13r: {
     title: 'React',
     questions: [

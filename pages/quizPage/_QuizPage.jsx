@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { PageTitle } from '../../components';
 import { QuizCard, QuizResult, QuizError } from './fragments';
 
-const QuizPage = ({ route, desks }) => {
-  const { deskId } = route.params;
-  const { title, questions } = desks[deskId];
+const QuizPage = ({ route, decks }) => {
+  const { deckId } = route.params;
+  const { title, questions } = decks[deckId];
   const cardsAmount = questions.length;
 
   const [correctAmount, setCorrectAmount] = useState(0);
@@ -41,7 +41,7 @@ const QuizPage = ({ route, desks }) => {
   if (cardsAmount === 0) {
     return (
       <QuizPageWrapper>
-        <QuizError deskId={deskId} />
+        <QuizError deckId={deckId} />
       </QuizPageWrapper>
     );
   }
@@ -50,7 +50,7 @@ const QuizPage = ({ route, desks }) => {
     return (
       <QuizPageWrapper>
         <QuizResult
-          deskId={deskId}
+          deckId={deckId}
           incorrectAmount={incorrectAmount}
           correctAmount={correctAmount}
           handleRestart={handleRestart}
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
 });
 const mapStateToProps = ({ app }) => ({
-  desks: app.desks,
+  decks: app.decks,
 });
 
 export default connect(mapStateToProps)(QuizPage);

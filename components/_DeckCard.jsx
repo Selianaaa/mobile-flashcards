@@ -10,10 +10,10 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-const DeskCard = ({ desk, id, handleDeleteClick }) => {
+const DeckCard = ({ deck, id, handleDeleteClick }) => {
   const navigation = useNavigation();
   const scaleAnim = useRef(new Animated.Value(1)).current;
-  const { title, questions } = desk;
+  const { title, questions } = deck;
 
   const scaleUp = () => {
     Animated.timing(scaleAnim, {
@@ -27,11 +27,11 @@ const DeskCard = ({ desk, id, handleDeleteClick }) => {
       toValue: 1,
       duration: 50,
       useNativeDriver: true,
-    }).start(() => navigation.navigate('Desk', { deskId: id }));
+    }).start(() => navigation.navigate('Deck', { deckId: id }));
   };
 
   const deleteCard = () => {
-    Alert.alert('Warning', `Do you really want to delete ${title} Desk ?`, [
+    Alert.alert('Warning', `Do you really want to delete ${title} Deck ?`, [
       { text: 'No' },
       {
         text: 'Yes',
@@ -91,4 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DeskCard;
+export default DeckCard;

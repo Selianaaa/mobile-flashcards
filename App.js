@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { store } from './store';
 import { BottomNavigatorMenu } from './components';
-import { DeskPage, AddCardPage, QuizPage } from './pages';
+import { DeckPage, AddCardPage, QuizPage } from './pages';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -19,7 +19,7 @@ export default function App() {
             options={{ headerShown: false }}
             component={BottomNavigatorMenu}
           />
-          <Stack.Screen name="Desk" component={DeskPage} />
+          <Stack.Screen name="Deck" component={DeckPage} />
           <Stack.Screen name="Add Card" component={AddCardPage} />
           <Stack.Screen name="Quiz" component={QuizPage} />
         </Stack.Navigator>

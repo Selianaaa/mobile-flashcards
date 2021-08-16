@@ -7,9 +7,9 @@ import { useNavigation } from '@react-navigation/native';
 import { PageTitle, BaseCard, BaseInput } from '../../components';
 import { appActions } from '../../store';
 
-const AddCardPage = ({ route, desks, addNewCard }) => {
-  const { deskId } = route.params;
-  const { title } = desks[deskId];
+const AddCardPage = ({ route, decks, addNewCard }) => {
+  const { deckId } = route.params;
+  const { title } = decks[deckId];
 
   const navigation = useNavigation();
   const [question, setQuestion] = useState('');
@@ -34,7 +34,7 @@ const AddCardPage = ({ route, desks, addNewCard }) => {
             { backgroundColor: !btnDisabled() ? '#1e7e1b' : '#cdddcc' },
           ]}
           onPress={() => {
-            addNewCard(deskId, { question, answer }, navigation);
+            addNewCard(deckId, { question, answer }, navigation);
             setQuestion('');
             setAnswer('');
           }}
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ app }) => ({
-  desks: app.desks,
+  decks: app.decks,
 });
 
 const mapDispatchtoProps = (dispatch) => ({

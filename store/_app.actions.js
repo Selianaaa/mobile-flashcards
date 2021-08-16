@@ -1,99 +1,99 @@
 import { appConstants } from '../constants';
 
 /**
- * Setting qesk chaning condition
+ * Setting deck chaning condition
  * @param {boolean} inRequest - request condition
  */
-const setDeskChanging = (inRequest) => ({
-  type: appConstants.SET_DESK_CHANGING,
+const setDeckChanging = (inRequest) => ({
+  type: appConstants.SET_DECK_CHANGING,
   payload: inRequest,
 });
 
 /**
- * Setting desks
- * @param {Object} desks
+ * Setting decks
+ * @param {Object} decks
  */
-const setDesks = (desks) => {
+const setDecks = (decks) => {
   return (dispatch) => {
     dispatch({
-      type: appConstants.CHANGE_DESKS,
-      payload: desks,
+      type: appConstants.CHANGE_DECKS,
+      payload: decks,
     });
   };
 };
 
 /**
- * Add new desk
+ * Add new deck
  * @param {string} title
  * @param {Object} navigation
  */
-const addNewDesk = (title, navigation) => {
+const addNewDeck = (title, navigation) => {
   return (dispatch, getState) => {
-    const { desks } = getState().app;
-    const newDesk = {
+    const { decks } = getState().app;
+    const newDeck = {
       title,
       questions: [],
     };
 
-    const deskId =
+    const deckId =
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
 
     dispatch(
-      setDesks({
-        ...desks,
-        [deskId]: newDesk,
+      setDecks({
+        ...decks,
+        [deckId]: newDeck,
       })
     );
 
-    navigation.navigate('Desk', { deskId: deskId });
+    navigation.navigate('Deck', { deckId: deckId });
   };
 };
 
 /**
- * Remove desk
+ * Remove deck
  * @param {string} title
  * @param {Object} navigation
  */
-const removeDesk = (id) => {
+const removeDeck = (id) => {
   return (dispatch, getState) => {
-    const { desks } = getState().app;
+    const { decks } = getState().app;
 
-    const newDesks = Object.assign({}, desks);
-    delete newDesks[id];
+    const newDecks = Object.assign({}, decks);
+    delete newDecks[id];
 
-    dispatch(setDesks(newDesks));
+    dispatch(setDecks(newDecks));
   };
 };
 
 /**
- * Add card to the desk
- * @param {string} deskId
+ * Add card to the deck
+ * @param {string} deckId
  * @param {Object} card
  * @param {Object} navigation
  */
-const addNewCard = (deskId, card, navigation) => {
+const addNewCard = (deckId, card, navigation) => {
   return (dispatch, getState) => {
-    const { desks } = getState().app;
+    const { decks } = getState().app;
 
     dispatch(
-      setDesks({
-        ...desks,
-        [deskId]: {
-          ...desks[deskId],
-          questions: desks[deskId].questions.concat(card),
+      setDecks({
+        ...decks,
+        [deckId]: {
+          ...decks[deckId],
+          questions: decks[deckId].questions.concat(card),
         },
       })
     );
 
-    navigation.navigate('Desk', { deskId: deskId });
+    navigation.navigate('Deck', { deckId: deckId });
   };
 };
 
 export default {
-  setDeskChanging,
-  setDesks,
-  addNewDesk,
-  removeDesk,
+  setDeckChanging,
+  setDecks,
+  addNewDeck,
+  removeDeck,
   addNewCard,
 };

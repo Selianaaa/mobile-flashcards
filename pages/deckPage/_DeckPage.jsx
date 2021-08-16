@@ -5,9 +5,9 @@ import { useNavigation } from '@react-navigation/native';
 
 import { PageTitle, BaseButton } from '../../components';
 
-const DeskPage = ({ route, desks }) => {
-  const { deskId } = route.params;
-  const { title, questions } = desks[deskId];
+const DeskPage = ({ route, decks }) => {
+  const { deckId } = route.params;
+  const { title, questions } = decks[deckId];
 
   const navigation = useNavigation();
 
@@ -19,14 +19,14 @@ const DeskPage = ({ route, desks }) => {
       <View style={styles.options}>
         <BaseButton
           pressHandler={() =>
-            navigation.navigate('Add Card', { deskId: deskId })
+            navigation.navigate('Add Card', { deckId: deckId })
           }
         >
           Add Card
         </BaseButton>
 
         <BaseButton
-          pressHandler={() => navigation.navigate('Quiz', { deskId: deskId })}
+          pressHandler={() => navigation.navigate('Quiz', { deckId: deckId })}
         >
           Start Quiz
         </BaseButton>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
 });
 const mapStateToProps = ({ app }) => ({
-  desks: app.desks,
+  decks: app.decks,
 });
 
 export default connect(mapStateToProps)(DeskPage);

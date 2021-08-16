@@ -7,35 +7,35 @@ import { useNavigation } from '@react-navigation/native';
 import { PageTitle, BaseCard, BaseInput } from '../../components';
 import { appActions } from '../../store';
 
-const AddDeskPage = ({ addNewDesk }) => {
+const AddDeckPage = ({ addNewDeck }) => {
   const navigation = useNavigation();
-  const [deskName, setDeskName] = useState('');
+  const [deckName, setDeckName] = useState('');
 
   return (
     <View style={{ padding: 20 }}>
-      <PageTitle>New Desk</PageTitle>
+      <PageTitle>New Deck</PageTitle>
       <BaseCard style={styles.card}>
-        <Text style={styles.text}>Title of your new Desk:</Text>
-        <BaseInput value={deskName} changeHandler={setDeskName} />
+        <Text style={styles.text}>Title of your new Deck:</Text>
+        <BaseInput value={deckName} changeHandler={setDeckName} />
 
         <TouchableOpacity
-          disabled={!deskName.length}
+          disabled={!deckName.length}
           style={[
             styles.btn,
-            { backgroundColor: deskName.length ? '#1e7e1b' : '#cdddcc' },
+            { backgroundColor: deckName.length ? '#1e7e1b' : '#cdddcc' },
           ]}
           onPress={() => {
-            addNewDesk(deskName, navigation);
-            setDeskName('');
+            addNewDeck(deckName, navigation);
+            setDeckName('');
           }}
         >
           <Text
             style={[
               styles.btnText,
-              { color: deskName.length ? 'white' : '#295c27' },
+              { color: deckName.length ? 'white' : '#295c27' },
             ]}
           >
-            Create Desk
+            Create Deck
           </Text>
         </TouchableOpacity>
       </BaseCard>
@@ -81,4 +81,4 @@ const mapDispatchtoProps = (dispatch) => ({
   ...bindActionCreators(appActions, dispatch),
 });
 
-export default connect(null, mapDispatchtoProps)(AddDeskPage);
+export default connect(null, mapDispatchtoProps)(AddDeckPage);

@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import { AddDeskPage, DesksPage } from '../pages';
+import { AddDeckPage, DecksPage } from '../pages';
 
 const BottomNavigatorMenu = () => {
   const Tab = createBottomTabNavigator();
@@ -12,8 +12,8 @@ const BottomNavigatorMenu = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
           const icons = {
-            Desks: 'albums-outline',
-            'Add Desk': 'add-circle-outline',
+            Decks: 'albums-outline',
+            'Add Deck': 'add-circle-outline',
           };
 
           return (
@@ -22,8 +22,8 @@ const BottomNavigatorMenu = () => {
         },
       })}
     >
-      <Tab.Screen name="Desks" component={DesksPage} />
-      <Tab.Screen name="Add Desk" component={AddDeskPage} />
+      <Tab.Screen name="Decks" component={DecksPage} />
+      <Tab.Screen name="Add Deck" component={AddDeckPage} />
     </Tab.Navigator>
   );
 };

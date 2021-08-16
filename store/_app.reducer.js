@@ -1,23 +1,23 @@
-import { initialDesks, appConstants } from '../constants';
+import { initialDecks, appConstants } from '../constants';
 
 const initialState = {
-  desks: initialDesks,
-  desk_changing: false,
+  decks: initialDecks,
+  deck_changing: false,
 };
 
 export default function (state = initialState, { type, payload = null }) {
   switch (type) {
-    case appConstants.CHANGE_DESKS:
+    case appConstants.CHANGE_DECKS:
       return {
         ...state,
-        desks: payload,
-        desk_changing: false,
+        decks: payload,
+        deck_changing: false,
       };
 
-    case appConstants.SET_DESK_CHANGING:
+    case appConstants.SET_DECK_CHANGING:
       return {
         ...state,
-        desk_changing: payload,
+        deck_changing: payload,
       };
 
     default:

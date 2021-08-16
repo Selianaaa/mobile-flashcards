@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const QuizError = ({ deskId }) => {
+const QuizError = ({ deckId }) => {
   const navigation = useNavigation();
 
   return (
@@ -13,7 +13,7 @@ const QuizError = ({ deskId }) => {
         </Text>
         <TouchableOpacity
           style={styles.errorBtn}
-          onPress={() => navigation.navigate('Add Card', { deskId: deskId })}
+          onPress={() => navigation.navigate('Add Card', { deckId: deckId })}
         >
           <Text style={styles.btnText}>Add Card</Text>
         </TouchableOpacity>

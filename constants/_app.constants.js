@@ -1,6 +1,6 @@
 export const appConstants = {
   SET_APP_READY: 'set app ready',
 
-  CHANGE_DESKS: 'change desks',
-  SET_DESK_CHANGING: 'set desk changing',
+  CHANGE_DECKS: 'change decks',
+  SET_DECK_CHANGING: 'set deck changing',
 };

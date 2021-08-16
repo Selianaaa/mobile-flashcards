@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { BaseButton, BaseCard } from '../../../components';
 
 const QuizResult = ({
-  deskId,
+  deckId,
   correctAmount,
   incorrectAmount,
   handleRestart,
@@ -38,11 +38,11 @@ const QuizResult = ({
         </BaseButton>
 
         <BaseButton
-          pressHandler={() => navigation.navigate('Desk', { deskId: deskId })}
+          pressHandler={() => navigation.navigate('Deck', { deckId: deckId })}
           style={styles.btn}
           textStyle={styles.btnText}
         >
-          Back to Desk
+          Back to Deck
         </BaseButton>
       </View>
     </BaseCard>
