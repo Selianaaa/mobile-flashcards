@@ -19,21 +19,9 @@ export default function App() {
             options={{ headerShown: false }}
             component={BottomNavigatorMenu}
           />
-          <Stack.Screen
-            name="Desk"
-            options={{ headerShown: true }}
-            component={DeskPage}
-          />
-          <Stack.Screen
-            name="Add Card"
-            options={{ headerShown: true }}
-            component={AddCardPage}
-          />
-          <Stack.Screen
-            name="Quiz"
-            options={{ headerShown: true }}
-            component={QuizPage}
-          />
+          <Stack.Screen name="Desk" component={DeskPage} />
+          <Stack.Screen name="Add Card" component={AddCardPage} />
+          <Stack.Screen name="Quiz" component={QuizPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
