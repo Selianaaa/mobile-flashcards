@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -10,64 +10,41 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useNavigation } from '@react-navigation/native';
 
+import { PageTitle } from '../../components';
 import { appActions } from '../../store';
 
 const AddDeskPage = ({ addNewDesk }) => {
   const navigation = useNavigation();
-
-  const [textInputValue, setTextInputValue] = React.useState('');
-  const handleChange = (event) => {
-    setTextInputValue(event.target.value);
-  };
-  const handleChangeText = (value) => {
-    setTextInputValue(value);
-  };
-
-  console.log(textInputValue);
+  const [deskName, setDeskName] = useState('');
 
   return (
     <View style={{ padding: 20 }}>
-      <Text style={styles.title}>New Deck</Text>
+      <PageTitle>New Deck</PageTitle>
       <View style={styles.card}>
-        <Text style={styles.questionTxt}>
-          What is the title of your new deck?
-        </Text>
+        <Text style={styles.text}>Title of your new deck:</Text>
         <TextInput
           style={styles.input}
-          // onChange={handleChange}
-          onChangeText={(text) => handleChangeText(text)}
-          value={textInputValue}
+          onChangeText={setDeskName}
+          value={deskName}
         />
         <TouchableOpacity
-          disabled={textInputValue === '' ? true : false}
+          disabled={!deskName.length}
           style={[
             styles.btn,
-            textInputValue === ''
-              ? { backgroundColor: '#ced4da' }
-              : {
-                  backgroundColor: '#A8DADC',
-                },
+            { backgroundColor: deskName.length ? '#1e7e1b' : '#cdddcc' },
           ]}
           onPress={() => {
-            if (textInputValue !== '') {
-              const txt = textInputValue;
-              handleChangeText('');
-              addNewDesk(txt, navigation);
-            }
+            addNewDesk(deskName, navigation);
+            setDeskName('');
           }}
         >
           <Text
             style={[
-              {
-                fontWeight: 'bold',
-                fontSize: 20,
-              },
-              textInputValue === ''
-                ? { color: '#adb5bd' }
-                : { color: '#457B9D' },
+              styles.btnText,
+              { color: deskName.length ? 'white' : '#295c27' },
             ]}
           >
-            Submit
+            Create
           </Text>
         </TouchableOpacity>
       </View>
@@ -76,52 +53,45 @@ const AddDeskPage = ({ addNewDesk }) => {
 };
 
 const styles = StyleSheet.create({
-  title: {
-    color: '#1D3557',
-    fontWeight: 'bold',
-    fontSize: 24,
-  },
   card: {
+    position: 'relative',
     marginVertical: 10,
     backgroundColor: 'white',
-    height: 350,
-    borderRadius: 20,
-    /* box shadow */
-    shadowColor: '#adb5bd',
-    shadowOffset: { width: 0, height: 0.2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 5,
-    elevation: 5,
-    /* center content */
+    height: 250,
+    borderRadius: 25,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
+    elevation: 1,
     display: 'flex',
     alignItems: 'center',
-
-    paddingTop: 50,
+    paddingTop: 40,
   },
-  questionTxt: {
-    width: 250,
-    color: '#1D3557',
+  text: {
+    color: '#0c460a',
     fontSize: 24,
     textAlign: 'center',
   },
   input: {
-    textAlign: 'center',
-    backgroundColor: '#F1F1F1',
+    backgroundColor: '#eef7ee',
     marginTop: 20,
+    padding: 10,
     height: 45,
     width: 300,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
+    borderBottomColor: '#0c460a',
+    borderBottomWidth: 2,
   },
   btn: {
-    marginTop: 100,
+    marginTop: 50,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: 45,
     width: 300,
-    borderRadius: 25,
+    borderRadius: 5,
   },
+  btnText: { fontWeight: 'bold', fontSize: 23 },
 });
 
 const mapDispatchtoProps = (dispatch) => ({

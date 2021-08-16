@@ -17,11 +17,11 @@ const DeskCard = ({ desk, id, handleDeleteClick }) => {
 
   const deleteCard = () => {
     Alert.alert('Warning', `Do you really want to delete ${title} deck ?`, [
+      { text: 'No' },
       {
         text: 'Yes',
         onPress: () => handleDeleteClick(id),
       },
-      { text: 'No' },
     ]);
   };
 
