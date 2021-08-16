@@ -7,6 +7,7 @@ import { DeskCard, PageTitle } from '../../components';
 import { appActions } from '../../store';
 
 const DesksPage = ({ desks, removeDesk }) => {
+  console.log(desks);
   return (
     <ScrollView style={{ padding: 15 }}>
       <PageTitle>All Decks</PageTitle>

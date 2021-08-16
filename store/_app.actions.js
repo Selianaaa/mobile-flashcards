@@ -66,9 +66,34 @@ const removeDesk = (id) => {
   };
 };
 
+/**
+ * Add card to the desk
+ * @param {string} deskId
+ * @param {Object} card
+ * @param {Object} navigation
+ */
+const addNewCard = (deskId, card, navigation) => {
+  return (dispatch, getState) => {
+    const { desks } = getState().app;
+
+    dispatch(
+      setDesks({
+        ...desks,
+        [deskId]: {
+          ...desks[deskId],
+          questions: desks[deskId].questions.concat(card),
+        },
+      })
+    );
+
+    navigation.navigate('Deck', { deskId: deskId });
+  };
+};
+
 export default {
   setDeskChanging,
   setDesks,
   addNewDesk,
   removeDesk,
+  addNewCard,
 };

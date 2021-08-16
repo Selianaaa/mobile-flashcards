@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   View,
   Text,
   StyleSheet,
+  Animated,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Alert,
@@ -12,8 +13,23 @@ import { Ionicons } from '@expo/vector-icons';
 
 const DeskCard = ({ desk, id, handleDeleteClick }) => {
   const navigation = useNavigation();
-
+  const scaleAnim = useRef(new Animated.Value(1)).current;
   const { title, questions } = desk;
+
+  const scaleUp = () => {
+    Animated.timing(scaleAnim, {
+      toValue: 1.1,
+      duration: 50,
+      useNativeDriver: true,
+    }).start(() => scaleDown());
+  };
+  const scaleDown = () => {
+    Animated.timing(scaleAnim, {
+      toValue: 1,
+      duration: 50,
+      useNativeDriver: true,
+    }).start(() => navigation.navigate('Deck', { deskId: id }));
+  };
 
   const deleteCard = () => {
     Alert.alert('Warning', `Do you really want to delete ${title} deck ?`, [
@@ -26,17 +42,17 @@ const DeskCard = ({ desk, id, handleDeleteClick }) => {
   };
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => navigation.navigate('Deck', { deskId: id })}
-    >
-      <View style={styles.card}>
+    <TouchableWithoutFeedback onPress={scaleUp}>
+      <Animated.View
+        style={[styles.card, { transform: [{ scale: scaleAnim }] }]}
+      >
         <TouchableOpacity style={styles.removeBtn} onPress={deleteCard}>
           <Ionicons name="close" size={29} color="#26a522" />
         </TouchableOpacity>
 
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.cardAmount}>{questions.length} cards</Text>
-      </View>
+      </Animated.View>
     </TouchableWithoutFeedback>
   );
 };

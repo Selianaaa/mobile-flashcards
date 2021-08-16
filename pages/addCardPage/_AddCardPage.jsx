@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,42 +14,56 @@ import { useNavigation } from '@react-navigation/native';
 import { PageTitle } from '../../components';
 import { appActions } from '../../store';
 
-const AddDeskPage = ({ addNewDesk }) => {
+const AddCardPage = ({ route, desks, addNewCard }) => {
+  const { deskId } = route.params;
+  const { title } = desks[deskId];
+
   const navigation = useNavigation();
-  const [deskName, setDeskName] = useState('');
+  const [question, setQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
+
+  const btnDisabled = () => !question.length || !answer.length;
 
   return (
-    <View style={{ padding: 20 }}>
-      <PageTitle>New Deck</PageTitle>
+    <ScrollView style={{ padding: 20 }}>
+      <PageTitle>{`New Card in ${title}`}</PageTitle>
       <View style={styles.card}>
-        <Text style={styles.text}>Title of your new deck:</Text>
+        <Text style={styles.text}>Question:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={setDeskName}
-          value={deskName}
+          onChangeText={setQuestion}
+          value={question}
+        />
+
+        <Text style={[styles.text, { marginTop: 40 }]}>Answer:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setAnswer}
+          value={answer}
         />
         <TouchableOpacity
-          disabled={!deskName.length}
+          disabled={btnDisabled()}
           style={[
             styles.btn,
-            { backgroundColor: deskName.length ? '#1e7e1b' : '#cdddcc' },
+            { backgroundColor: !btnDisabled() ? '#1e7e1b' : '#cdddcc' },
           ]}
           onPress={() => {
-            addNewDesk(deskName, navigation);
-            setDeskName('');
+            addNewCard(deskId, { question, answer }, navigation);
+            setQuestion('');
+            setAnswer('');
           }}
         >
           <Text
             style={[
               styles.btnText,
-              { color: deskName.length ? 'white' : '#295c27' },
+              { color: !btnDisabled() ? 'white' : '#295c27' },
             ]}
           >
-            Create Desk
+            Create Card
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -57,7 +72,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginVertical: 10,
     backgroundColor: 'white',
-    height: 250,
+    height: 400,
     borderRadius: 25,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -87,15 +102,19 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 45,
+    height: 55,
     width: 300,
     borderRadius: 5,
   },
   btnText: { fontWeight: 'bold', fontSize: 23 },
 });
 
+const mapStateToProps = ({ app }) => ({
+  desks: app.desks,
+});
+
 const mapDispatchtoProps = (dispatch) => ({
   ...bindActionCreators(appActions, dispatch),
 });
 
-export default connect(null, mapDispatchtoProps)(AddDeskPage);
+export default connect(mapStateToProps, mapDispatchtoProps)(AddCardPage);
